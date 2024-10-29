@@ -48,7 +48,7 @@ def calculate_final_cost(weight: float, carats: int = 22, making_charges_percent
 st.title("Jewelry Cost Calculator")
 
 # User input
-weight = st.number_input("Enter weight in grams:", min_value=0.01, step=0.01, value=3.21)
+weight = st.number_input("Enter weight in grams:", min_value=0.01, step=0.01, value=0.00)
 carats = st.selectbox("Select carat value:", [18, 22, 24], index=1)
 making_charges_percent = st.number_input("Enter making charges (%):", min_value=0.0, step=0.1, value=14.0)
 
@@ -58,6 +58,6 @@ if st.button("Calculate"):
         st.subheader("Calculation Results:")
         for key, value in result.items():
             if isinstance(value, float):
-                st.write(f"{key}: {round(value, 1)}")
+                st.write(f"{key}: {round(value, 2)}")
             else:
                 st.write(f"{key}: {value}")
