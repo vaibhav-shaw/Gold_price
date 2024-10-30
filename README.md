@@ -29,13 +29,9 @@ By using this tool, the sales team can **save up to 5 minutes per customer**, en
 ---
 
 ## 👥 Contributors  
-```text
 Vaibhav Shaw – Project Author
-```
 
 ---
 
 ## 🎊 Acknowledgments
-```text
 Special thanks to Kanchan Jewellers for the inspiration and support in developing this tool, helping streamline operations during the festive season.
-```
