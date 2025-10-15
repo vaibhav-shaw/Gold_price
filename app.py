@@ -68,73 +68,73 @@ st.markdown('<p class="sub-header">Shuddhata Ki Pehchan</p>', unsafe_allow_html=
 
 # Input section
 st.subheader("Jewelry Details")
-    
-    # Metal type selection
-    metal_type = st.selectbox(
-        "Metal Type",
-        ["Gold", "Silver"],
-        index=0,
-        help="Select the type of metal"
+
+# Metal type selection
+metal_type = st.selectbox(
+    "Metal Type",
+    ["Gold", "Silver"],
+    index=0,
+    help="Select the type of metal"
+)
+
+# User inputs with better styling
+weight = st.number_input(
+    "Weight (grams)",
+    min_value=0.01,
+    step=0.01,
+    value=10.0,
+    help="Enter the weight of jewelry in grams",
+    key="weight_input"
+)
+
+# Default rates
+default_gold_rates = {18: 10400, 22: 12100, 24: 13000}
+default_silver_rate = 190
+
+carats = None
+rate_per_gram = 0
+
+if metal_type == "Gold":
+    carats = st.selectbox(
+        "Carat Purity",
+        [18, 22, 24],
+        index=1,
+        help="Select the purity of gold"
     )
     
-    # User inputs with better styling
-    weight = st.number_input(
-        "Weight (grams)",
-        min_value=0.01,
-        step=0.01,
-        value=10.0,
-        help="Enter the weight of jewelry in grams",
-        key="weight_input"
-    )
-    
-    # Default rates
-    default_gold_rates = {18: 10400, 22: 12100, 24: 13000}
-    default_silver_rate = 190
-    
-    carats = None
-    rate_per_gram = 0
-    
-    if metal_type == "Gold":
-        carats = st.selectbox(
-            "Carat Purity",
-            [18, 22, 24],
-            index=1,
-            help="Select the purity of gold"
-        )
-        
-        rate_per_gram = st.number_input(
-            f"Gold Rate per gram ({carats}K)",
-            min_value=0.0,
-            step=100.0,
-            value=float(default_gold_rates[carats]),
-            help="Enter or adjust the current gold rate per gram",
-            key=f"gold_rate_{carats}"
-        )
-        
-        st.info(f"📈 Current rate for {carats}K gold: ₹{rate_per_gram:,.0f}/gram (₹{rate_per_gram*10:,.0f}/10g)")
-        
-    else:  # Silver
-        rate_per_10gram = st.number_input(
-            "Silver Rate per 10 gram",
-            min_value=0.0,
-            step=100.0,
-            value=float(default_silver_rate * 10),
-            help="Enter or adjust the current silver rate per 10 grams",
-            key="silver_rate"
-        )
-        
-        # Convert back to per gram for calculation
-        rate_per_gram = rate_per_10gram / 10
-        
-        st.info(f"📈 Current silver rate: ₹{rate_per_gram:,.0f}/gram (₹{rate_per_10gram:,.0f}/10g)")
-    
-    making_charges_percent = st.number_input(
-        "Making Charges (%)",
+    rate_per_gram = st.number_input(
+        f"Gold Rate per gram ({carats}K)",
         min_value=0.0,
-        step=0.1,
-        value=14.0,
-        help="Enter making charges percentage"
+        step=100.0,
+        value=float(default_gold_rates[carats]),
+        help="Enter or adjust the current gold rate per gram",
+        key=f"gold_rate_{carats}"
     )
+    
+    st.info(f"📈 Current rate for {carats}K gold: ₹{rate_per_gram:,.0f}/gram (₹{rate_per_gram*10:,.0f}/10g)")
+    
+else:  # Silver
+    rate_per_10gram = st.number_input(
+        "Silver Rate per 10 gram",
+        min_value=0.0,
+        step=100.0,
+        value=float(default_silver_rate * 10),
+        help="Enter or adjust the current silver rate per 10 grams",
+        key="silver_rate"
+    )
+    
+    # Convert back to per gram for calculation
+    rate_per_gram = rate_per_10gram / 10
+    
+    st.info(f"📈 Current silver rate: ₹{rate_per_gram:,.0f}/gram (₹{rate_per_10gram:,.0f}/10g)")
+
+making_charges_percent = st.number_input(
+    "Making Charges (%)",
+    min_value=0.0,
+    step=0.1,
+    value=14.0,
+    help="Enter making charges percentage"
+)
     
 # Calculate button
 calculate_clicked = st.button("Calculate Final Cost", use_container_width=True)
