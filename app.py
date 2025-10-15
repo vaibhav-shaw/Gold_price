@@ -143,7 +143,7 @@ if st.session_state.get('mobile_layout', True):
     st.markdown('</div>', unsafe_allow_html=True)
     
     # Calculate button with better styling
-    calculate_clicked = st.button("Calculate Final Cost", width="stretch")
+    calculate_clicked = st.button("Calculate Final Cost", use_container_width=True)
 
 if calculate_clicked:
     result = calculate_final_cost(weight, metal_type, carats, rate_per_gram, making_charges_percent)
