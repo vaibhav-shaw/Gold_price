@@ -1,0 +1,7 @@
+# For Kivy-based Android app
+kivy==2.1.0
+kivymd==1.1.1
+buildozer==1.5.0
+
+# Core calculation logic (same as your Streamlit app)
+pandas==2.0.3

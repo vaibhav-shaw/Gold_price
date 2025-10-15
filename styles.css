@@ -1,0 +1,234 @@
+/* Import professional fonts */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap');
+
+/* Global styling - Light mode default */
+.stApp {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    transition: all 0.3s ease;
+}
+
+/* Theme toggle styling */
+.stToggle {
+    margin-bottom: 1rem;
+}
+
+.stToggle > div {
+    background: rgba(212, 175, 55, 0.1);
+    border-radius: 25px;
+    padding: 0.5rem 1rem;
+    border: 1px solid #D4AF37;
+}
+
+/* Professional header styling */
+.main-header {
+    text-align: center;
+    color: #1a1a1a;
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    line-height: 1.2;
+    letter-spacing: -0.5px;
+}
+
+.sub-header {
+    text-align: center;
+    color: #B8860B;
+    font-family: 'Inter', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-bottom: 2.5rem;
+    padding: 0 1rem;
+    font-style: italic;
+    letter-spacing: 0.5px;
+}
+
+/* Professional card styling */
+.calculation-card {
+    background: #ffffff;
+    border: 1px solid #e0e0e0;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    margin: 1.5rem 0;
+    position: relative;
+}
+
+.calculation-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #D4AF37 0%, #B8860B 100%);
+    border-radius: 12px 12px 0 0;
+}
+
+.result-card {
+    background: linear-gradient(135deg, #1a1a1a 0%, #2c2c2c 100%);
+    color: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    margin: 1.5rem 0;
+    border: 1px solid #D4AF37;
+}
+
+/* Professional button styling */
+.stButton > button {
+    background: linear-gradient(135deg, #1a1a1a 0%, #2c2c2c 100%);
+    color: white;
+    border: 2px solid #D4AF37;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 1.1rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    width: 100%;
+    min-height: 55px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.stButton > button:hover {
+    background: linear-gradient(135deg, #D4AF37 0%, #B8860B 100%);
+    border-color: #1a1a1a;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 16px rgba(212, 175, 55, 0.3);
+}
+
+/* Professional input styling */
+.stNumberInput > div > div > input,
+.stSelectbox > div > div > div {
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    padding: 0.75rem;
+    min-height: 50px;
+    border: 1px solid #d0d0d0;
+    border-radius: 6px;
+    background: #fafafa;
+    transition: all 0.2s ease;
+}
+
+.stNumberInput > div > div > input:focus,
+.stSelectbox > div > div > div:focus {
+    border-color: #D4AF37;
+    box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.2);
+    background: white;
+}
+
+/* Professional labels */
+.stNumberInput label,
+.stSelectbox label {
+    font-family: 'Inter', sans-serif;
+    font-weight: 500 !important;
+    font-size: 0.95rem !important;
+    color: #2c2c2c !important;
+    margin-bottom: 0.5rem;
+}
+
+/* Weight input field - premium styling */
+.stNumberInput:has(input[aria-label*="Weight"]) label {
+    font-weight: 600 !important;
+    color: #1a1a1a !important;
+    font-size: 1.1rem !important;
+}
+
+.stNumberInput:has(input[aria-label*="Weight"]) input {
+    border: 2px solid #D4AF37 !important;
+    font-weight: 600 !important;
+    font-size: 1.1rem !important;
+    background: linear-gradient(135deg, #fff9e6 0%, #ffffff 100%) !important;
+    box-shadow: 0 2px 8px rgba(212, 175, 55, 0.1) !important;
+}
+
+/* Professional metrics */
+[data-testid="metric-container"] {
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 8px;
+    padding: 1.2rem;
+    margin: 0.8rem 0;
+    backdrop-filter: blur(10px);
+}
+
+[data-testid="metric-container"] label {
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.8);
+}
+
+[data-testid="metric-container"] [data-testid="metric-value"] {
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+    font-size: 1.8rem;
+    color: white;
+}
+
+/* Professional info boxes */
+.stInfo {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border: 1px solid #D4AF37;
+    border-radius: 8px;
+    padding: 1rem;
+    font-family: 'Inter', sans-serif;
+}
+
+/* Section headers */
+h3 {
+    font-family: 'Playfair Display', serif;
+    color: #1a1a1a;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+/* Sidebar styling - Light mode */
+.css-1d391kg {
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    border-right: 1px solid #e0e0e0;
+}
+
+.css-1d391kg h1, .css-1d391kg h2, .css-1d391kg h3 {
+    color: #1a1a1a;
+    font-family: 'Playfair Display', serif;
+}
+
+.css-1d391kg p, .css-1d391kg li {
+    color: #2c2c2c;
+    font-family: 'Inter', sans-serif;
+}
+
+/* Smooth transitions for all elements */
+* {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .main-header {
+        font-size: 2.2rem;
+    }
+    
+    .calculation-card, .result-card {
+        padding: 1.5rem;
+        margin: 1rem 0;
+    }
+    
+    .stButton > button {
+        font-size: 1rem;
+        padding: 0.875rem 1.5rem;
+    }
+}
+
+/* Professional dividers */
+hr {
+    border: none;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, #D4AF37 50%, transparent 100%);
+    margin: 1.5rem 0;
+}
