@@ -66,11 +66,8 @@ def calculate_final_cost(weight: float, metal_type: str, carats: int = None, rat
 st.markdown('<h1 class="main-header">💎 Kanchan Jewellers</h1>', unsafe_allow_html=True)
 st.markdown('<p class="sub-header">Shuddhata Ki Pehchan</p>', unsafe_allow_html=True)
 
-# Mobile-optimized layout - single column on mobile, two columns on desktop
-if st.session_state.get('mobile_layout', True):
-    # Single column layout for mobile
-    st.markdown('<div class="calculation-card">', unsafe_allow_html=True)
-    st.subheader("Jewelry Details")
+# Input section
+st.subheader("Jewelry Details")
     
     # Metal type selection
     metal_type = st.selectbox(
@@ -139,15 +136,12 @@ if st.session_state.get('mobile_layout', True):
         help="Enter making charges percentage"
     )
     
-    st.markdown('</div>', unsafe_allow_html=True)
-    
-    # Calculate button with better styling
-    calculate_clicked = st.button("Calculate Final Cost", use_container_width=True)
+# Calculate button
+calculate_clicked = st.button("Calculate Final Cost", use_container_width=True)
 
 if calculate_clicked:
     result = calculate_final_cost(weight, metal_type, carats, rate_per_gram, making_charges_percent)
     if result:
-        st.markdown('<div class="result-card">', unsafe_allow_html=True)
         st.subheader("Price Calculation")
         
         # Professional metrics display
@@ -163,10 +157,7 @@ if calculate_clicked:
             delta=f"{result['Discount Percent']} off making charges"
         )
         
-        st.markdown('</div>', unsafe_allow_html=True)
-        
-        # Detailed breakdown - mobile optimized
-        st.markdown('<div class="calculation-card">', unsafe_allow_html=True)
+        # Detailed breakdown
         st.subheader("Price Breakdown")
         
         # Mobile-friendly breakdown display
@@ -185,12 +176,8 @@ if calculate_clicked:
         st.divider()
         
         st.markdown(f"### **Final Amount: ₹{result['Final Cost']:,.2f}**")
-        
-        st.markdown('</div>', unsafe_allow_html=True)
 else:
-    st.markdown('<div class="calculation-card">', unsafe_allow_html=True)
     st.info("👆 Enter the jewelry details and click 'Calculate Final Cost' to see the results")
-    st.markdown('</div>', unsafe_allow_html=True)
 
 # Sidebar with additional information
 with st.sidebar:
