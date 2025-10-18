@@ -16,17 +16,17 @@ def load_css(file_name):
 # Load main styles
 load_css('styles.css')
 
-def calculate_final_cost(weight: float, metal_type: str, carats: int = None, rate_per_gram: float = 0, making_charges_percent: float = 14.0) -> dict:
+def calculate_final_cost(weight: float, metal_type: str, carats: int = None, rate_per_gram: float = 0, making_charges_percent: float = 13.0, making_charges_per_gram: float = 20.0) -> dict:
     # Calculate base cost for given weight
     base_cost = weight * rate_per_gram
     
-    # Calculate making charges with different discounts for gold and silver
-    making_charges = base_cost * (making_charges_percent / 100)
-    
+    # Calculate making charges with different methods for gold and silver
     if metal_type == "Gold":
+        making_charges = base_cost * (making_charges_percent / 100)
         discounted_making_charges = making_charges * 0.75  # 25% discount on making charges for gold
         discount_percent = "25%"
     else:  # Silver
+        making_charges = weight * making_charges_per_gram
         discounted_making_charges = making_charges * 0.50  # 50% discount on making charges for silver
         discount_percent = "50%"
     
@@ -88,8 +88,8 @@ weight = st.number_input(
 )
 
 # Default rates
-default_gold_rates = {18: 10400, 22: 12100, 24: 13000}
-default_silver_rate = 190
+default_gold_rates = {18: 10620, 22: 12350, 24: 13150}
+default_silver_rate = 181.6
 
 carats = None
 rate_per_gram = 0
@@ -128,19 +128,30 @@ else:  # Silver
     
     st.info(f"📈 Current silver rate: ₹{rate_per_gram:,.0f}/gram (₹{rate_per_10gram:,.0f}/10g)")
 
-making_charges_percent = st.number_input(
-    "Making Charges (%)",
-    min_value=0.0,
-    step=0.1,
-    value=14.0,
-    help="Enter making charges percentage"
-)
+if metal_type == "Gold":
+    making_charges_percent = st.number_input(
+        "Making Charges (%)",
+        min_value=0.0,
+        step=0.1,
+        value=13.0,
+        help="Enter making charges percentage for gold"
+    )
+    making_charges_per_gram = 20.0  # Default for silver, not used for gold
+else:  # Silver
+    making_charges_per_gram = st.number_input(
+        "Making Charges (₹ per gram)",
+        min_value=0.0,
+        step=1.0,
+        value=20.0,
+        help="Enter making charges in rupees per gram for silver"
+    )
+    making_charges_percent = 13.0  # Default for gold, not used for silver
     
 # Calculate button
 calculate_clicked = st.button("Calculate Final Cost", use_container_width=True)
 
 if calculate_clicked:
-    result = calculate_final_cost(weight, metal_type, carats, rate_per_gram, making_charges_percent)
+    result = calculate_final_cost(weight, metal_type, carats, rate_per_gram, making_charges_percent, making_charges_per_gram)
     if result:
         st.subheader("Price Calculation")
         
@@ -191,8 +202,8 @@ with st.sidebar:
     st.write("• Gold & Silver calculations")
     st.write("• Editable metal rates")
     st.write("• Mobile-optimized interface")
-    st.write("• 25% discount on gold making charges")
-    st.write("• 50% discount on silver making charges")
+    st.write("• 25% discount on gold making charges (%)")
+    st.write("• 50% discount on silver making charges (₹/gram)")
     st.write("• GST included (3%)")
     st.write("• Multiple carat options for gold")
     
